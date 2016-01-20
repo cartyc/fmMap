@@ -3,6 +3,7 @@
 // h, w are the height and width of the map. I just set this as 100% for both so that the map takes up the whole webview.
 // zoom is for the maps zoom level.
 // api, will be your api key
+// Chris Carty, 
 
 Let(
 
