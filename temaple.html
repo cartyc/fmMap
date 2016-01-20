@@ -1,0 +1,149 @@
+<html>
+<head>
+<STYLE type="text/css">
+
+html, body{
+border: 0;
+border-style: none;
+margin: 0;
+overflow: auto;
+height: 100%;
+width: 100%;
+}
+
+.infowindow
+    {
+        font-size:24px;
+        width: 250px;
+        color: #ff0000;
+        font-family:Arial, Helvetica, sans-serif;
+    }
+
+#map{
+
+height: *height*;
+max-width: *width*;
+}
+
+
+#project{
+text-decoration: underline;
+}
+
+#print p{
+font-size: 24px;
+margin: 10px;
+display: table-cell;
+color: white;
+text-align: center;
+vertical-align: middle;
+}
+
+table, td{
+border: 0px;
+padding-left: 5px;
+width:auto;
+border-collapse:collapse;
+text-align: left;
+}
+tr, td{
+text-align:left;
+width: 100px;
+}
+</style>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>This is a map!</title>
+   <script src="http://maps.googleapis.com/maps/api/js?key=*api*" type="text/javascript" charset="utf-8"></script>
+
+
+<script type="text/javascript">
+
+    var data = [*address*];
+
+     var infowindow;
+
+
+	function initialize() {
+		var center = new google.maps.LatLng(data[0].lat, data[0].lng);
+		var bounds = new google.maps.LatLngBounds();
+
+		//Set Map Options
+		var myOptions = {
+	     center: center,
+		          zoom: *zoom*,
+		          mapTypeId: *maptype*
+	        };
+        
+		//Create the Map elemt
+		var map = new google.maps.Map(document.getElementById("map"),
+            myOptions);
+
+		//Create an empty list to store the markers in
+	         var markers = [];
+
+
+		//Loop through the data and create the markers.
+ 	        for (var i = 0; i < data.length; ++i) {
+
+		var latlng = new google.maps.LatLng(data[i].lat, data[i].lng);
+		var marker = new google.maps.Marker({
+			position: latlng,
+			map: map,
+			title:data[i].label,
+			info:data[i].info,
+			address:data[i].address
+		});
+	
+		//Create the info window
+		var infowindow = new google.maps.InfoWindow({
+			content: data[i].info
+		});
+
+		//Make a listener
+          	google.maps.event.addListener(marker, 'click', function () {
+			var titletag =  document.createElement('H3');
+			var contenttag =  document.createElement('div');
+			var infotag =  document.createElement('p');
+			
+			titletag.innerHTML = this.title;
+			infotag.innerHTML = this.info;
+			contenttag.appendChild(titletag);
+			infowindow.setContent(this.info);
+			contenttag.appendChild(infotag);
+			infowindow.open(map, this);
+              
+		});
+
+	//extend the bounds of the map
+             bounds.extend(latlng);
+           markers.push(marker);
+		//fit bounds of more than one address otherwise center on the single property point
+	if( data.length > 1){
+		map.fitBounds(bounds);
+	
+	} else {
+		map.center(latlng);
+	}
+
+	if( map.getZoom() > 14) {
+		map.setZoom(14);
+	}
+
+         }
+
+
+
+  }
+   </script>
+<script type="text/javascript">
+  
+
+</script>
+ </head>
+ <body onload="initialize()" onunload="onload()" bgcolor='#FFFFfF' style="border:0; margin:0; padding:0; scrolling:no; background-color: #FFFFFF">
+
+
+
+   <div id="map"></div>
+ </body>
+</html>
