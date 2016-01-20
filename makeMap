@@ -2,7 +2,7 @@
 // Type should be road, sat, or terrain. This will select the google map type
 // h, w are the height and width of the map. I just set this as 100% for both so that the map takes up the whole webview.
 // zoom is for the maps zoom level.
-// Street view takes a boolean (True, False) to determine whether or not to use street view.
+// api, will be your api key
 
 Let(
 
