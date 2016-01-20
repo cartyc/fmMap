@@ -1,7 +1,7 @@
 # fmMap
 Render a google map in a FileMaker webviewer
 
-makeMap(address, type, h, w, zoom)
+makeMap(address, type, h, w, zoom, api)
 
 # Args
 
@@ -9,6 +9,7 @@ makeMap(address, type, h, w, zoom)
 - Type should be road, sat, or terrain. This will select the google map type
 - h, w are the height and width of the map. I just set this as 100% for both so that the map takes up the whole webview.
 - zoom is for the maps zoom level.
+- api will be you api key
 
 # Usage
 
