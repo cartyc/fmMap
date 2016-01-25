@@ -3,14 +3,14 @@
 // h, w are the height and width of the map. I just set this as 100% for both so that the map takes up the whole webview.
 // zoom is for the maps zoom level.
 // api, will be your api key
-// Chris Carty, 
+// Chris Carty,
 
 Let(
 
 [
 //Select html code
 map = *map html goes here*,
-api = *mapsapi*,
+api = api,
 maptype = Case(type = "hybrid" ; "google.maps.MapTypeId.HYBRID";  type = "sat"; "google.maps.MapTypeId.SATELLITE"; type="terrain" ; "google.maps.MapTypeId.TERRAIN"; type = "road"; "google.maps.MapTypeId.ROADMAP");
 render = Substitute(map ; ["*address*" ; address  ]; ["*maptype*"; maptype]; ["*height*"; h]; ["*width*"; w]; ["*zoom*"; zoom]; ["*api*"; api])
 ];
